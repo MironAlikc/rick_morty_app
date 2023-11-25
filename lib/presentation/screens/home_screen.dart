@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rick_morty_app/presentation/screens/charecters_page.dart';
 import 'package:rick_morty_app/presentation/theme/app_colors.dart';
 import 'package:rick_morty_app/resources/resources.dart';
 
@@ -14,13 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   List<Widget> screens = [
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    // CharectersPage(),
-    // CharectersPage(),
-    // CharectersPage(),
+    CharectersPage(),
+    CharectersPage(),
+    CharectersPage(),
+    CharectersPage(),
   ];
 
   @override

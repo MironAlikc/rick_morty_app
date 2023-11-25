@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_morty_app/data/repositories/dio_settings.dart';
+import 'package:rick_morty_app/data/repositories/get_chars_repo.dart';
+import 'package:rick_morty_app/data/repositories/get_episode_data_repo.dart';
+import 'package:rick_morty_app/presentation/blocs/chars_bloc/chars_bloc.dart';
+import 'package:rick_morty_app/presentation/blocs/eposode_bloc/eposode_bloc.dart';
 import 'package:rick_morty_app/presentation/screens/splash_screen.dart';
 import 'package:rick_morty_app/presentation/theme/theme_provider.dart';
 
@@ -16,10 +22,41 @@ class MyApp extends StatelessWidget {
       create: (context) => ThemeProvider(),
       child: Builder(builder: (context) {
         return TextFieldUnfocus(
-          child: MaterialApp(
-              title: 'Flutter Demo',
-              theme: context.watch<ThemeProvider>().theme,
-              home: const SplashScreen()),
+          child: MultiRepositoryProvider(
+            providers: [
+              RepositoryProvider(
+                create: (context) => DioSettings(),
+              ),
+              RepositoryProvider(
+                create: (context) => GetCharsRepo(
+                  dio: RepositoryProvider.of<DioSettings>(context).dio,
+                ),
+              ),
+              RepositoryProvider(
+                create: (context) => GetEpisodeDataRepo(
+                  dio: RepositoryProvider.of<DioSettings>(context).dio,
+                ),
+              ),
+            ],
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => CharsBloc(
+                    repo: RepositoryProvider.of<GetCharsRepo>(context),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => EposodeBloc(
+                    repo: RepositoryProvider.of<GetEpisodeDataRepo>(context),
+                  ),
+                ),
+              ],
+              child: MaterialApp(
+                theme: context.watch<ThemeProvider>().theme,
+                home: const SplashScreen(),
+              ),
+            ),
+          ),
         );
       }),
     );
