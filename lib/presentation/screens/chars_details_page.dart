@@ -4,6 +4,7 @@ import 'package:rick_morty_app/data/models/charecter_model.dart';
 import 'package:rick_morty_app/data/models/episode_model.dart';
 import 'package:rick_morty_app/presentation/blocs/eposode_bloc/eposode_bloc.dart';
 import 'package:rick_morty_app/presentation/theme/app_colors.dart';
+import 'package:rick_morty_app/widgets/data_widget.dart';
 
 class CharsDetailsPage extends StatefulWidget {
   const CharsDetailsPage({super.key, required this.data});
@@ -54,7 +55,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                         width: double.infinity,
                         height: 218,
                         decoration: BoxDecoration(
-                          color: Color(0xff0B1E2D).withOpacity(0.65),
+                          color: const Color(0xff0B1E2D).withOpacity(0.65),
                         ),
                       ),
                       IconButton(
@@ -79,7 +80,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                       letterSpacing: 0.25,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     widget.data.status ?? '',
                     style: const TextStyle(
@@ -91,7 +92,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                       letterSpacing: 1.50,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   const Text(
                     'Главный ', //протагонист мультсериала «Рик и Морти». Безумный ученый, чей алкоголизм, безрассудность и социопатия заставляют беспокоиться семью его дочери.',
                     style: TextStyle(
@@ -103,23 +104,23 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                       letterSpacing: 0.50,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Row(
                     children: [
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       DataWidget(
                         titile: 'Пол',
                         subTitle: widget.data.gender ?? '',
                       ),
-                      Spacer(),
+                      const Spacer(),
                       DataWidget(
                         titile: 'расса',
                         subTitle: widget.data.species ?? '',
                       ),
-                      Spacer(),
+                      const Spacer(),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   InkWell(
                     onTap: () {},
                     child: Padding(
@@ -134,14 +135,14 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Icon(Icons.arrow_right_alt_outlined,
+                          const Spacer(),
+                          const Icon(Icons.arrow_right_alt_outlined,
                               color: Colors.white),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   InkWell(
                     onTap: () {},
                     child: Padding(
@@ -156,14 +157,14 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Icon(Icons.arrow_right_alt_outlined,
+                          const Spacer(),
+                          const Icon(Icons.arrow_right_alt_outlined,
                               color: Colors.white),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   const Divider(
                     height: 5,
                     color: Color(0xFF152A3A),
@@ -202,11 +203,11 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                     listener: (context, state) {
                       if (state is EposodeSuccess) {
                         episodeData.add(state.model);
-                        setState(() {});
                       }
+                      setState(() {});
                     },
                     child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: episodeData.length,
                       itemBuilder: (context, index) => Padding(
@@ -228,7 +229,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -243,7 +244,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                                     letterSpacing: 1.50,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(
                                   '${episodeData[index].name}',
                                   style: TextStyle(
@@ -256,7 +257,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                                     letterSpacing: 0.50,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(
                                   '${episodeData[index].created}',
                                   style: const TextStyle(
@@ -293,51 +294,6 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class DataWidget extends StatelessWidget {
-  const DataWidget({
-    super.key,
-    required this.titile,
-    required this.subTitle,
-  });
-
-  final String titile;
-  final String subTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          titile,
-          style: TextStyle(
-            color: Color(0xFF5B6975),
-            fontSize: 12,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w400,
-            height: 1.33,
-            letterSpacing: 0.50,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subTitle,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w400,
-            height: 1.43,
-            letterSpacing: 0.25,
-          ),
-        ),
-      ],
     );
   }
 }
