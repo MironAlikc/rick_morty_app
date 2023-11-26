@@ -57,19 +57,21 @@ class _CharectersPageState extends State<CharectersPage> {
                     showDialog(
                       context: context,
                       builder: (context) => const AlertDialog.adaptive(
-                        content: Column(children: [
-                          Text(
-                            'СТАТУС',
-                            style: TextStyle(
-                              color: Color(0xFF5B6975),
-                              fontSize: 10,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
-                              height: 1.60,
-                              letterSpacing: 1.50,
+                        content: Column(
+                          children: [
+                            Text(
+                              'СТАТУС',
+                              style: TextStyle(
+                                color: Color(0xFF5B6975),
+                                fontSize: 10,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500,
+                                height: 1.60,
+                                letterSpacing: 1.50,
+                              ),
                             ),
-                          )
-                        ]),
+                          ],
+                        ),
                       ),
                     );
                   },

@@ -203,8 +203,8 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                     listener: (context, state) {
                       if (state is EposodeSuccess) {
                         episodeData.add(state.model);
-                        setState(() {});
                       }
+                      setState(() {});
                     },
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
