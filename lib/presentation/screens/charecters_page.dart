@@ -143,7 +143,7 @@ class _CharectersPageState extends State<CharectersPage> {
                             itemCount: state.model.results?.length ?? 0,
                             itemBuilder: (context, index) => ListViewWidget(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CharsDetailsPage(
