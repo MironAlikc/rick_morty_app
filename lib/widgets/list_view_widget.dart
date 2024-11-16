@@ -28,9 +28,11 @@ class ListViewWidget extends StatelessWidget {
               children: [
                 Text(
                   character.status ?? '',
-                  style: const TextStyle(
-                    color: Color(0XFF42D048),
-                    fontSize: 10,
+                  style: TextStyle(
+                    color: character.status == 'Alive'
+                        ? const Color(0XFF42D048)
+                        : Colors.red,
+                    fontSize: 15,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     height: 1.60,
@@ -41,7 +43,7 @@ class ListViewWidget extends StatelessWidget {
                   character.name ?? '',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 15,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     height: 1.50,
@@ -49,10 +51,10 @@ class ListViewWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${character.species},${character.gender}',
+                  '${character.species}, ${character.gender}',
                   style: const TextStyle(
                     color: Color(0XFF6E798C),
-                    fontSize: 12,
+                    fontSize: 15,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w400,
                     height: 1.33,

@@ -7,14 +7,15 @@ class EpisodeModel {
   String? url;
   String? created;
 
-  EpisodeModel(
-      {this.id,
-      this.name,
-      this.airDate,
-      this.episode,
-      this.characters,
-      this.url,
-      this.created});
+  EpisodeModel({
+    this.id,
+    this.name,
+    this.airDate,
+    this.episode,
+    this.characters,
+    this.url,
+    this.created,
+  });
 
   EpisodeModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

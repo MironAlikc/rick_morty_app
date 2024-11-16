@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rick_morty_app/presentation/screens/charecters_page.dart';
+import 'package:rick_morty_app/presentation/screens/settings_screen.dart';
 import 'package:rick_morty_app/presentation/theme/app_colors.dart';
 import 'package:rick_morty_app/resources/resources.dart';
 
@@ -15,10 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   List<Widget> screens = [
-    CharectersPage(),
-    CharectersPage(),
-    CharectersPage(),
-    CharectersPage(),
+    const CharectersPage(),
+    const CharectersPage(),
+    const CharectersPage(),
+    const SettingsScreen(),
   ];
 
   @override
@@ -28,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.green,
-        unselectedItemColor: AppColors.darkTextColor,
         currentIndex: currentIndex,
         onTap: (val) {
           currentIndex = val;

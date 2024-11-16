@@ -7,6 +7,7 @@ part 'chars_event.dart';
 part 'chars_state.dart';
 
 class CharsBloc extends Bloc<CharsEvent, CharsState> {
+  final GetCharsRepo repo;
   CharsBloc({required this.repo}) : super(CharsInitial()) {
     on<GetCharsList>(
       (event, emit) async {
@@ -27,5 +28,4 @@ class CharsBloc extends Bloc<CharsEvent, CharsState> {
       },
     );
   }
-  final GetCharsRepo repo;
 }

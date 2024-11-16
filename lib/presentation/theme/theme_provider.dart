@@ -27,11 +27,22 @@ class ThemeProvider extends ChangeNotifier {
         elevation: 0,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        unselectedItemColor:
+            isDarkTheme ? AppColors.lightBgColor : AppColors.darkBgColor,
         backgroundColor:
             isDarkTheme ? AppColors.darkBgColor : AppColors.lightBgColor,
       ),
     );
 
     notifyListeners();
+  }
+
+  OutlineInputBorder getTextFieldBorder(BuildContext context) {
+    return OutlineInputBorder(
+      borderSide: BorderSide(
+        color: isDarkTheme ? AppColors.lightBgColor : AppColors.darkBgColor,
+      ),
+      borderRadius: BorderRadius.circular(100),
+    );
   }
 }

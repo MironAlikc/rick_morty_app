@@ -8,21 +8,25 @@ part 'eposode_state.dart';
 
 class EposodeBloc extends Bloc<EposodeEvent, EposodeState> {
   EposodeBloc({required this.repo}) : super(EposodeInitial()) {
-    on<GetEpisodeEvent>((event, emit) async {
-      try {
-        emit(
-          EposodeLoading(),
-        );
-        final model = await repo.getEpisodeData(
-          url: event.url,
-        );
-        emit(
-          EposodeSuccess(model: model),
-        );
-      } catch (e) {
-        emit(EposodeError());
-      }
-    });
+    on<GetEpisodeEvent>(
+      (event, emit) async {
+        try {
+          emit(
+            EposodeLoading(),
+          );
+          final model = await repo.getEpisodeData(
+            url: event.url,
+          );
+          emit(
+            EposodeSuccess(model: model),
+          );
+        } catch (e) {
+          emit(
+            EposodeError(),
+          );
+        }
+      },
+    );
   }
   final GetEpisodeDataRepo repo;
 }

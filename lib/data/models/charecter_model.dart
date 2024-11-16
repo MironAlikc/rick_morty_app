@@ -23,7 +23,7 @@ class CharacterModel {
       data['results'] = results!.map((v) => v.toJson()).toList();
     }
     return data;
-  }
+  } 
 }
 
 class Info {

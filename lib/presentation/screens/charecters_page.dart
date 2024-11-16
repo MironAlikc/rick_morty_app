@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:rick_morty_app/data/models/charecter_model.dart';
 import 'package:rick_morty_app/presentation/blocs/chars_bloc/chars_bloc.dart';
 import 'package:rick_morty_app/presentation/screens/chars_details_page.dart';
 import 'package:rick_morty_app/presentation/theme/app_colors.dart';
+import 'package:rick_morty_app/presentation/theme/theme_provider.dart';
 import 'package:rick_morty_app/resources/resources.dart';
 import 'package:rick_morty_app/widgets/grid_view_widget.dart';
 import 'package:rick_morty_app/widgets/list_view_widget.dart';
@@ -86,12 +88,16 @@ class _CharectersPageState extends State<CharectersPage> {
                 ),
                 fillColor: AppColors.darkTextFillColor,
                 filled: true,
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: AppColors.darkTextFillColor,
-                  ),
-                  borderRadius: BorderRadius.circular(100),
-                ),
+                border: Provider.of<ThemeProvider>(context)
+                    .getTextFieldBorder(context),
+                //context.read<ThemeProvider>().getTextFieldBorder(context),
+
+                // OutlineInputBorder(
+                //   borderSide: const BorderSide(
+                //     color: AppColors.darkTextFillColor,
+                //   ),
+                //   borderRadius: BorderRadius.circular(100),
+                // ),
               ),
               controller: controller,
             ),
@@ -110,18 +116,21 @@ class _CharectersPageState extends State<CharectersPage> {
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      isGridView = !isGridView;
-                      setState(() {});
-                    },
-                    icon: SvgPicture.asset(
-                      isGridView ? AppSvgs.list : AppSvgs.grid,
-                    )),
+                  onPressed: () {
+                    // меняет
+                    isGridView = !isGridView;
+                    setState(() {});
+                  },
+                  icon: SvgPicture.asset(
+                    isGridView ? AppSvgs.list : AppSvgs.grid,
+                  ),
+                ),
               ],
             ),
             BlocBuilder<CharsBloc, CharsState>(
               builder: (context, state) {
                 if (state is CharsSuccess) {
+                  // charsCount =state.model.results?.length ?? 0;
                   return isGridView
                       ? Expanded(
                           child: GridView.builder(
@@ -143,6 +152,7 @@ class _CharectersPageState extends State<CharectersPage> {
                             itemCount: state.model.results?.length ?? 0,
                             itemBuilder: (context, index) => ListViewWidget(
                               onTap: () {
+                                //pushReplacement
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

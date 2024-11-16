@@ -136,8 +136,10 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                             ],
                           ),
                           const Spacer(),
-                          const Icon(Icons.arrow_right_alt_outlined,
-                              color: Colors.white),
+                          const Icon(
+                            Icons.arrow_right_alt_outlined,
+                            color: Colors.white,
+                          ),
                         ],
                       ),
                     ),
@@ -199,6 +201,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                       ],
                     ),
                   ),
+                  // BlocListener - не перересовываем экран
                   BlocListener<EposodeBloc, EposodeState>(
                     listener: (context, state) {
                       if (state is EposodeSuccess) {
@@ -268,7 +271,7 @@ class _CharsDetailsPageState extends State<CharsDetailsPage> {
                                     height: 1.43,
                                     letterSpacing: 0.25,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
